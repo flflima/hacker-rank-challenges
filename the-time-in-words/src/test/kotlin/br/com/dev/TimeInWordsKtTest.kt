@@ -1,3 +1,5 @@
+@file:Suppress("DANGEROUS_CHARACTERS")
+
 package br.com.dev
 
 import org.assertj.core.api.Assertions.assertThat
@@ -52,5 +54,26 @@ internal class TimeInWordsKtTest {
         val timeInWords = timeInWords(3, 30)
 
         assertThat(timeInWords).isEqualTo("half past three")
+    }
+
+    @Test
+    fun `given time 5h40 should return "twenty minutes to six"`() {
+        val timeInWords = timeInWords(5, 40)
+
+        assertThat(timeInWords).isEqualTo("twenty minutes to six")
+    }
+
+    @Test
+    fun `given time 12h45 should return "quarter to one`() {
+        val timeInWords = timeInWords(12, 45)
+
+        assertThat(timeInWords).isEqualTo("quarter to one")
+    }
+
+    @Test
+    fun `given time 1h59 should return "one minute to two`() {
+        val timeInWords = timeInWords(1, 59)
+
+        assertThat(timeInWords).isEqualTo("one minute to two")
     }
 }
