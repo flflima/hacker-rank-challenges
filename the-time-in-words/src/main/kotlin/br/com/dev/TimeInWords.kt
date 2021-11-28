@@ -24,39 +24,33 @@ val numerals = mapOf(
     30 to "thirty",
     40 to "forty",
     50 to "sixty",
-    60 to "fifty",
+    60 to "fifty"
 )
 
 fun timeInWords(hour: Int, minutes: Int): String {
     val hourStr = toHourStr(hour, minutes)
     val minuteStr = toMinutesString(minutes)
     if (minutes == 1) return "$minuteStr minute past $hourStr"
+    if (minutes in 2..14 || minutes in 16..29) return "$minuteStr minutes past $hourStr"
     if (minutes == 30) return "half past $hourStr"
     if (minutes == 15) return "quarter past $hourStr"
-    if (minutes in 2..14 || minutes in 16..29) return "$minuteStr minutes past $hourStr"
-    if (minutes == 45) return "quarter to $hourStr"
     if (minutes == 59) return "$minuteStr minute to $hourStr"
-    if (minutes in 31..44|| minutes in 46..59) return "$minuteStr minutes to $hourStr"
-    return "$hourStr o'clock"
+    if (minutes in 31..44 || minutes in 46..59) return "$minuteStr minutes to $hourStr"
+    if (minutes == 45) return "quarter to $hourStr"
+    return "$hourStr o' clock"
 }
 
-fun toHourStr(hour: Int, minutes: Int): String {
-    var tempHour = hour
-    if (minutes > 30) {
-        tempHour = if (hour + 1 > 12) {
-            1
-        } else hour + 1
-    }
-    return numerals[tempHour]!!
-}
+fun toHourStr(hour: Int, minutes: Int) = if (minutes > 30) {
+    if (hour + 1 > 12) {
+        numerals[1]!!
+    } else numerals[hour + 1]!!
+} else numerals[hour]!!
+
 
 fun toMinutesString(minutes: Int): String {
     if (minutes == 0) return ""
-    if (minutes in 31..44|| minutes in 46..59) {
-        return toMinutesString(60 - minutes)
-    }
-    if (minutes in 1..19) return numerals[minutes]!!
-    if (minutes % 10 == 0) return numerals[minutes]!!
+    if (minutes in 31..44 || minutes in 46..59) return toMinutesString(60 - minutes)
+    if (minutes in 1..19 || minutes % 10 == 0) return numerals[minutes]!!
 
     val minuteUnity = minutes % 10
     val minuteDozen = minutes - minuteUnity
