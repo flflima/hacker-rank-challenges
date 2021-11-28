@@ -15,10 +15,8 @@ val hourStr = mapOf(
     12 to "twelve"
 )
 
+val complement = mapOf(0 to "o'clock")
+
 fun timeInWords(hour: Int, minutes: Int): String {
-    var minutesString = ""
-    if (minutes == 0) {
-        minutesString = "o'clock"
-    }
-    return "${hourStr[hour]} $minutesString"
+    return "${hourStr[hour]} ${complement[minutes]}"
 }
