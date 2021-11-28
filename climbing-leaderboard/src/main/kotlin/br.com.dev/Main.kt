@@ -1,7 +1,6 @@
 package br.com.dev
 
 object Main {
-    //
     fun climbingLeaderboard(ranked: Array<Int>, player: Array<Int>): Array<Int> {
         val distinct = ranked.distinct()
         return player.map { score ->
