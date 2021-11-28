@@ -23,8 +23,8 @@ val numerals = mapOf(
     20 to "twenty",
     30 to "thirty",
     40 to "forty",
-    50 to "sixty",
-    60 to "fifty"
+    50 to "fifty",
+    60 to "sixty"
 )
 
 fun timeInWords(hour: Int, minutes: Int): String {
